@@ -26,6 +26,8 @@ RESOURCEGROUP=${19}
 LOCATION=${20}
 STORAGEACCOUNT1=${21}
 SAKEY1=${22}
+AZUREADAPPNAME=${23}
+AZUREADLOGOUTREDIRECTURI=${24}
 
 MASTERLOOP=$((MASTERCOUNT - 1))
 INFRALOOP=$((INFRACOUNT - 1))
@@ -390,7 +392,11 @@ openshift_master_cluster_public_hostname=$MASTERPUBLICIPHOSTNAME
 openshift_master_cluster_public_vip=$MASTERPUBLICIPADDRESS
 
 # Enable HTPasswdPasswordIdentityProvider
-openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
+#openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
+
+# Enable Azure AD auth
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'},{'name': '$AZUREADAPPNAME', 'login': 'true', 'challenge': 'false', 'kind': 'OpenIDIdentityProvider', 'client_id': '$AADCLIENTID', 'client_secret': '$AADCLIENTSECRET', 'extra_scopes': [], 'extra_authorize_parameters': {}, 'claims': { 'id': ['sub'], 'preferredUsername': ['unique_name'], 'name': ['unique_name'], 'email': ['unique_name']}, 'urls': {'authorize': 'https://login.microsoftonline.com/$TENANTID/oauth2/authorize', 'token': 'https://login.microsoftonline.com/$TENANTID/oauth2/token'}}]
+openshift_master_logout_url='https://login.microsoftonline.com/$TENANTID/oauth2/logout?post_logout_redirect_uri=$AZUREADLOGOUTREDIRECTURI'
 
 # host group for masters
 [masters]
