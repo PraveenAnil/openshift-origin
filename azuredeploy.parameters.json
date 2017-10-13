@@ -6,16 +6,16 @@
 			"value": "https://raw.githubusercontent.com/Microsoft/openshift-origin/master/"
 		},
 		"masterVmSize": {
-			"value": "Standard_DS2_v2"
+			"value": "Standard_D2_v2"
 		},
 		"infraVmSize": {
-			"value": "Standard_DS2_v2"
+			"value": "Standard_D2_v2"
 		},
 		"nodeVmSize": {
-			"value": "Standard_DS2_v2"
+			"value": "Standard_D2_v2"
 		},
 		"openshiftClusterPrefix": {
-			"value": "changeme"
+			"value": "GEN-UNIQUE"
 		},
 		"masterInstanceCount": {
 			"value": 3
@@ -30,34 +30,37 @@
 			"value": 128
 		},
 		"adminUsername": {
-			"value": "changeme"
+			"value": "GEN-UNIQUE"
 		},
 		"openshiftPassword": {
-			"value": "changeme"
+			"value": "GEN-PASSWORD"
 		},
 		"sshPublicKey": {
-			"value": "changeme"
+			"value": "GEN-UNIQUE"
 		},
 		"keyVaultResourceGroup": {
-			"value": "changeme"
+			"value": "GEN-UNIQUE"
 		},
 		"keyVaultName": {
-			"value": "changeme"
+			"value": "GEN-UNIQUE"
 		},
 		"keyVaultSecret": {
-			"value": "changeme"
+			"value": "GEN-UNIQUE"
 		},
 		"aadClientId": {
-			"value": "changeme"
+			"value": "GEN-UNIQUE"
 		},
 		"aadClientSecret": {
-			"value": "changeme"
+			"value": "GEN-UNIQUE"
 		},
 		"defaultSubDomainType": {
 			"value": "nipio"
 		},
 		"defaultSubDomain": {
-			"value": "changeme"
+			"value": "GEN-UNIQUE"
+		},
+		"databaseAccountName": {
+			"values": "GEN-UNIQUE
 		}
 	}
 }
