@@ -93,16 +93,16 @@
 		},
 		"masterInstanceCount": {
 			"type": "int",
-			"defaultValue": 3,
-			"allowedValues": [3, 5],
+			"defaultValue": 1,
+			"allowedValues": [1, 3, 5],
 			"metadata": {
 				"description": "Number of OpenShift masters."
 			}
 		},
 		"infraInstanceCount": {
 			"type": "int",
-			"defaultValue": 2,
-			"allowedValues": [2, 3],
+			"defaultValue": 1,
+			"allowedValues": [1, 2, 3],
 			"metadata": {
 				"description": "Number of OpenShift infra nodes."
 			}
@@ -204,13 +204,7 @@
 			"metadata": {
 				"description": "Default Subdomain for application routing (Wildcard DNS) - must enter something even if you are using nip.io"
 			}
-		},
-		    "databaseAccountName": {
-      "type": "string",
-      "metadata": {
-        "description": "The MongoDB database account name. Needs to be globally unique."
-      }
-    }
+		}
 	},
 	"variables": {
 		"location": "[resourceGroup().location]",
@@ -510,17 +504,6 @@
 		}
 	},
 	"resources": [
-		    {
-      "apiVersion": "2015-04-08",
-      "type": "Microsoft.DocumentDB/databaseAccounts",
-      "kind": "MongoDB",
-      "name": "[parameters('databaseAccountName')]",
-      "location": "[resourceGroup().location]",
-      "properties": {
-        "databaseAccountOfferType": "Standard",
-        "name": "[parameters('databaseAccountName')]"
-      }
-    },
 		{
 			"apiVersion": "[variables('apiVersionNetwork')]",
 			"type": "Microsoft.Network/networkSecurityGroups",
